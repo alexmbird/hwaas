@@ -1,0 +1,22 @@
+#
+# Dockerfile to bake a python-rq worker for hwaas into a container based on 
+# a minimal Alpine linux
+#
+# See http://gliderlabs.viewdocs.io/docker-alpine/usage/ for Alpine docker
+# documentation.
+#
+
+FROM alpine:3.6
+LABEL maintainer "Alex Hewson <mock@mocko.org.uk>"
+
+RUN apk add --no-cache python3 python3-dev
+
+ADD src /srv/themuse/hwaas/src
+COPY docker-fu/worker/start.sh /
+
+RUN python3 -m venv /srv/themuse/hwaas/_venv && \
+    . /srv/themuse/hwaas/_venv/bin/activate && \
+    pip install -r /srv/themuse/hwaas/src/requirements.txt
+
+USER nobody
+CMD /start.sh
