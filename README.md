@@ -127,6 +127,7 @@ $ rq worker --quiet -c worker_settings
 ## Potential Improvements
 
 *   Configurable Redis queues other than `default` - vital if we want to bring down costs by having multiple services share the same Redis
+*   Exception handling via the RQ [failed queue](http://python-rq.org/docs/exceptions/).
 *   Authentication for Redis, particularly if the service is to be publicly exposed
 *   k8s / ECS tooling for production deploys (as an alternative to docker-compose, but still utilising most of our tooling).  This should have the ability to monitor queue length and scale up the number of service-instances when it gets too long.
 *   Production-quality Redis - probably using AWS ElastiCache instead of a Docker container, which gives us more resiliency
