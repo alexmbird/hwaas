@@ -78,6 +78,7 @@ To get more instances of running services (in another terminal):
 $ docker-compose scale hw-client=4
 ```
 
+The Redis container's port is forwarded to your local machine on `6379`.  Use it for debugging the queues.  This behaviour is solely for development &amp; won't be replicated on production.
 
 
 ### Staging/Production
