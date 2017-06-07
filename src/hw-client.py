@@ -3,7 +3,7 @@
 
 from rq import Queue
 from redis import Redis
-import os, sys, time
+import os, time
 
 from shared_funcs import async_print
 
@@ -20,4 +20,3 @@ if __name__ == '__main__':
         job = q.enqueue(async_print, 'hello world')
         time.sleep(DELAY)  # wait a while, until the worker is finished
         print("Completion: %s" % (job.result,))
-        sys.stdout.flush()  # # needed to make output appear in docker-compose log

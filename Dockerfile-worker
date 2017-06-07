@@ -18,5 +18,9 @@ RUN python3 -m venv /srv/themuse/hwaas/_venv && \
     . /srv/themuse/hwaas/_venv/bin/activate && \
     pip install -r /srv/themuse/hwaas/src/requirements.txt
 
+# Buffering mucks up logging of stdout; otherwise we'd need a sys.stdout.flush()
+# after each print().
+ENV PYTHONUNBUFFERED=true
+
 USER nobody
 CMD /start.sh
